@@ -1,0 +1,104 @@
+<!-- home.component.html -->
+<div class="app-layout">
+  <!-- Sidebar -->
+  <app-sidebar class="sidebar"></app-sidebar>
+  
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <!-- Navbar -->
+    <app-navbar class="navbar"></app-navbar>
+    
+    <!-- Home Content -->
+    <div class="home-container">
+      <!-- Welcome Section -->
+    <div class="welcome-section">
+        <div class="welcome-content">
+          <h1 class="welcome-title">Welcome back, {{ employeeName }}!</h1>
+          <p class="welcome-subtitle">Your employee portal dashboard</p>
+        </div>
+        <div class="welcome-time">
+          <mat-icon class="time-icon">schedule</mat-icon>
+          <span>{{ currentDateTime }}</span>
+        </div>
+      </div>
+
+      <!-- Portal Overview -->
+      <div class="overview-section">
+        <h2 class="section-title">Portal Overview</h2>
+        <div class="overview-grid">
+          <mat-card class="overview-card">
+            <mat-card-header>
+              <mat-icon class="overview-icon">business</mat-icon>
+              <div>
+                <mat-card-title>Employee Portal</mat-card-title>
+              </div>
+            </mat-card-header>
+            <mat-card-content>
+              <p>Centralized hub for all your workplace needs. Access HR services, manage your profile, and stay connected with your team.</p>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="overview-card">
+            <mat-card-header>
+              <mat-icon class="overview-icon">security</mat-icon>
+              <div>
+                <mat-card-title>Secure & Private</mat-card-title>
+              </div>
+            </mat-card-header>
+            <mat-card-content>
+              <p>Your personal and professional information is protected with enterprise-grade security and privacy controls.</p>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="overview-card">
+            <mat-card-header>
+              <mat-icon class="overview-icon">speed</mat-icon>
+              <div>
+                <mat-card-title>Streamlined Experience</mat-card-title>
+              </div>
+            </mat-card-header>
+            <mat-card-content>
+              <p>Designed for efficiency with intuitive navigation and quick access to frequently used features and services.</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="actions-section">
+        <h2 class="section-title">Quick Actions</h2>
+        <div class="actions-grid">
+          <mat-card 
+            *ngFor="let action of quickActions" 
+            class="action-card"
+            [style.border-left]="'4px solid ' + action.color">
+            <mat-card-header>
+              <div class="action-icon" [style.background-color]="action.color + '20'">
+                <mat-icon [style.color]="action.color">{{ action.icon }}</mat-icon>
+              </div>
+              <div class="action-content">
+                <mat-card-title>{{ action.title }}</mat-card-title>
+                <mat-card-subtitle>{{ action.description }}</mat-card-subtitle>
+              </div>
+            </mat-card-header>
+            <mat-card-content>
+              <button 
+                mat-button 
+                [routerLink]="action.route"
+                class="action-button"
+                [style.color]="action.color">
+                Get Started
+                <mat-icon>arrow_forward</mat-icon>
+              </button>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer-section">
+        <p class="footer-text"> © Copyright 2025 Kaar Technologies. All rights reserved | Level 8, Shyamala Towers, Salligramam, Chennai - 93, India</p>
+      </div>
+    </div>
+  </div>
+</div>

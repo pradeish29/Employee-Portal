@@ -1,0 +1,285 @@
+/* login.component.css */
+.login-wrapper {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+}
+
+.login-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+  z-index: -2;
+}
+
+.background-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(103, 126, 234, 0.1) 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, rgba(118, 75, 162, 0.08) 1px, transparent 1px);
+  background-size: 80px 80px;
+  z-index: -1;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+  z-index: 1;
+}
+
+.login-card {
+  background: #1f1f1f;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-header {
+  padding: 24px 32px 16px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logos-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.company-logo {
+  height: 50px;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+}
+
+.logo-divider {
+  width: 1px;
+  height: 30px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3), transparent);
+}
+
+.app-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #4b53bc;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.3px;
+}
+
+.app-subtitle {
+  font-size: 14px;
+  color: #dadee6;
+  margin: 0;
+  font-weight: 400;
+}
+
+.login-form {
+  padding: 24px 32px 32px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.dark-input {
+  width: 100%;
+}
+
+/* Input field styling */
+.dark-input .mat-mdc-text-field-wrapper {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 6px;
+}
+
+.dark-input .mdc-notched-outline {
+  border-color: #6b7280 !important;
+  border-width: 1px !important;
+}
+
+.dark-input.mat-focused .mdc-notched-outline {
+  border-color: #6c7ce6 !important;
+  border-width: 2px !important;
+}
+
+.dark-input .mat-mdc-form-field-label {
+  color: #dadee6 !important;
+  font-weight: 400;
+}
+
+.dark-input.mat-focused .mat-mdc-form-field-label {
+  color: #6c7ce6 !important;
+}
+
+.dark-input input {
+  color: #f1eaea !important;
+  font-size: 14px;
+  padding-left: 12px !important;
+}
+
+.dark-input input::placeholder {
+  color: #e7dddd !important;
+  opacity: 1;
+}
+
+.input-icon {
+  color: #9ca3af;
+  font-size: 20px;
+}
+
+.dark-input.mat-focused .input-icon {
+  color: #6c7ce6;
+}
+
+.form-options {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 13px;
+  color: #dadee6;
+  user-select: none;
+}
+
+.checkbox {
+  display: none;
+}
+
+.checkmark {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid #dadee6;
+  border-radius: 3px;
+  margin-right: 10px;
+  position: relative;
+  transition: all 0.2s ease;
+  background-color: transparent;
+}
+
+.checkbox:checked + .checkmark {
+  background-color: #4b53bc;
+  border-color: #4b53bc;
+}
+
+.checkbox:checked + .checkmark::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 3px;
+  height: 7px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.form-actions {
+  margin-bottom: 20px;
+}
+
+.sign-in-btn {
+  width: 100% !important;
+  height: 44px !important;
+  background: #464EB8 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: all 0.2s ease !important;
+  text-transform: none !important;
+  cursor: pointer !important;
+  letter-spacing: 0.25px;
+}
+
+.sign-in-btn:hover {
+  background: #505AC9 !important;
+  box-shadow: 0 2px 8px rgba(70, 78, 184, 0.3) !important;
+}
+
+.btn-icon {
+  font-size: 16px;
+  transition: transform 0.2s ease;
+}
+
+.sign-in-btn:hover .btn-icon {
+  transform: translateX(2px);
+}
+
+.form-footer {
+  text-align: center;
+}
+
+.forgot-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #4b53bc;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.forgot-link:hover {
+  color: #6c7ce6;
+  text-decoration: underline;
+}
+
+/* Angular Material overrides */
+::ng-deep .dark-input .mat-mdc-input-element {
+  color: #f1eaea !important;
+  padding-left: 12px !important;
+}
+
+::ng-deep .dark-input .mdc-text-field__input {
+  color: #f1eaea !important;
+  padding-left: 12px !important;
+}
+
+mat-form-field,
+mat-label,
+input,
+::placeholder {
+  color: #646363 !important;
+  font-weight: 500;
+}

@@ -1,0 +1,188 @@
+<!-- activity.component.html -->
+<div class="app-layout">
+  <!-- Sidebar -->
+  <app-sidebar class="sidebar"></app-sidebar>
+  
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <!-- Navbar -->
+    <app-navbar class="navbar"></app-navbar>
+    
+    <!-- Activity Content -->
+    <div class="activity-container">
+      <div class="activity-header">
+        <h1 class="activity-title">Activity Timeline</h1>
+        <p class="activity-subtitle">Track your recent activities and tasks</p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs">
+        <button 
+          class="filter-tab" 
+          [class.active]="selectedFilter === 'all'"
+          (click)="filterActivities('all')">
+          All Activities
+        </button>
+        <button 
+          class="filter-tab" 
+          [class.active]="selectedFilter === 'task'"
+          (click)="filterActivities('task')">
+          Tasks
+        </button>
+        <button 
+          class="filter-tab" 
+          [class.active]="selectedFilter === 'meeting'"
+          (click)="filterActivities('meeting')">
+          Meetings
+        </button>
+        <button 
+          class="filter-tab" 
+          [class.active]="selectedFilter === 'document'"
+          (click)="filterActivities('document')">
+          Documents
+        </button>
+        <button 
+          class="filter-tab" 
+          [class.active]="selectedFilter === 'system'"
+          (click)="filterActivities('system')">
+          System
+        </button>
+      </div>
+
+      <!-- Activities List -->
+      <div class="activities-list">
+        <div 
+          class="activity-item" 
+          *ngFor="let activity of filteredActivities; trackBy: trackByFn">
+          
+          <div class="activity-icon" [ngSwitch]="activity.icon">
+            <!-- 🔐 login -->
+            <svg *ngSwitchCase="'🔐'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
+                stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+
+            <!-- ✅ task -->
+            <svg *ngSwitchCase="'✅'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
+                stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+
+            <!-- 📋 meeting -->
+            <svg *ngSwitchCase="'📋'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
+                stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 2h6a2 2 0 0 1 2 2v1H7V4a2 2 0 0 1 2-2z"></path>
+              <path d="M3 6h18v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6z"></path>
+            </svg>
+
+            <!-- 📄 document -->
+            <svg *ngSwitchCase="'📄'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
+                stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+
+            <!-- 🔧 task -->
+            <svg *ngSwitchCase="'🔧'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
+                stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.7 6.3a4 4 0 0 1 5 5L21 14l-7 7-2.7-2.3a4 4 0 0 1-5-5z"></path>
+              <path d="M14.7 6.3 9.3 11.7"></path>
+            </svg>
+
+            <!-- 📊 meeting -->
+            <svg *ngSwitchCase="'📊'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
+                stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
+
+            <!-- 🏖️ leave -->
+            <svg *ngSwitchCase="'🏖️'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
+                stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 21h20"></path>
+              <path d="M16 17l-3-3L2 21"></path>
+              <path d="M17 16A5 5 0 0 0 8.6 7.6L5 5l2.6 3.6A5 5 0 0 0 17 16z"></path>
+            </svg>
+
+            <!-- 🔑 system -->
+            <svg *ngSwitchCase="'🔑'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
+                stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="15" cy="15" r="4"></circle>
+              <path d="M9 15h-6v-6h6l4-4 4 4-4 4z"></path>
+            </svg>
+
+            <!-- 🐛 task -->
+            <svg *ngSwitchCase="'🐛'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
+                stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="M4.93 4.93l1.41 1.41"></path>
+              <path d="M17.66 17.66l1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="M4.93 19.07l1.41-1.41"></path>
+              <path d="M17.66 6.34l1.41-1.41"></path>
+            </svg>
+
+            <!-- 👥 meeting -->
+            <svg *ngSwitchCase="'👥'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
+                stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+
+            <!-- Default fallback -->
+            <svg *ngSwitchDefault xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
+                stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+
+          <div class="activity-content">
+            <div class="activity-main">
+              <h3 class="activity-item-title">{{ activity.title }}</h3>
+              <span class="activity-status" [ngClass]="getStatusClass(activity.status)">
+                {{ activity.status | titlecase }}
+              </span>
+            </div>
+            <p class="activity-description">{{ activity.description }}</p>
+            <div class="activity-meta">
+              <span class="activity-timestamp">{{ formatTimestamp(activity.timestamp) }}</span>
+              <span class="activity-type">{{ activity.type | titlecase }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state" *ngIf="filteredActivities.length === 0">
+        <div class="empty-icon">📋</div>
+        <h3 class="empty-title">No activities found</h3>
+        <p class="empty-description">No activities match the selected filter.</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-section">
+      <p class="footer-text">© Copyright 2025 Kaar Technologies. All rights reserved | Level 8, Shyamala Towers, Salligramam, Chennai - 93, India</p>
+    </div>
+  </div>
+</div>

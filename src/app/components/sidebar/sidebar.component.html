@@ -1,0 +1,15 @@
+<!-- sidebar.component.html -->
+<aside class="sidebar">
+  <div 
+    class="nav-item"
+    *ngFor="let item of navItems"
+    [class.active]="isActive(item.route)"
+    (click)="onNavItemClick(item)">
+    
+    <svg class="nav-icon" viewBox="0 0 24 24">
+      <path [attr.d]="item.icon"/>
+    </svg>
+    
+    <span class="nav-label">{{ item.label }}</span>
+  </div>
+</aside>

@@ -1,0 +1,307 @@
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  /* background-color: #1f1f1f; */
+  color: #ffffff;
+  /* Add these lines: */
+  position: relative;
+  padding-top: 48px; /* Height of your navbar */
+  padding-left: 60px; /* Width of your sidebar */
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 60px; /* Explicit width */
+  z-index: 1000;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 60px; /* Same as sidebar width */
+  right: 0;
+  height: 60px;
+  z-index: 999;
+  /* Remove width: 100% or 100vw if present */
+}
+
+.main-content {
+  flex: 1;
+  /* Remove margin-left since we're using padding on app-layout */
+  display: flex;
+  flex-direction: column;
+}
+
+.home-container {
+  flex: 1;
+  padding: 24px; /* Reduced padding since navbar is accounted for */
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Welcome Section */
+.welcome-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px; /* Reduced margin */
+  padding: 24px; /* Reduced padding */
+  /* background: linear-gradient(135deg, #2d2d30 0%, #252527 100%); */
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  border: 1px solid #404040;
+}
+
+.welcome-content h1.welcome-title {
+  font-size: 2rem; /* Reduced font size */
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+.welcome-content p.welcome-subtitle {
+  font-size: 1rem; /* Reduced font size */
+  color: #b3b3b3;
+  margin: 0;
+}
+
+.welcome-time {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6264A7;
+  font-weight: 500;
+}
+
+.time-icon {
+  font-size: 20px;
+}
+
+/* Sections */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 24px 0;
+  color: #ffffff;
+  letter-spacing: -0.25px;
+}
+
+.overview-section {
+  margin-bottom: 24px; /* Reduced margin */
+}
+
+.actions-section {
+  margin-bottom: 24px; /* Reduced margin */
+}
+
+/* Overview Grid */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Smaller min width */
+  gap: 16px; /* Reduced gap */
+  margin-bottom: 16px;
+}
+
+.overview-card {
+  background-color: #1a1a1a !important;
+  border: 1px solid #404040 !important;
+  border-radius: 8px !important; /* Reduced border radius */
+  transition: all 0.2s ease;
+}
+
+.overview-card:hover {
+  border-color: #6264A7 !important;
+  transform: translateY(-1px); /* Reduced hover effect */
+  box-shadow: 0 4px 15px rgba(98, 100, 167, 0.15);
+}
+
+.overview-card .mat-mdc-card-header {
+  padding: 16px 20px 8px 20px; /* Reduced padding */
+  align-items: center;
+}
+
+.overview-card .mat-mdc-card-content {
+  padding: 0 20px 16px 20px; /* Reduced padding */
+  color: #b3b3b3;
+  line-height: 1.5;
+  font-size: 0.9rem; /* Smaller text */
+}
+
+.overview-icon {
+  color: #6264A7;
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  margin-right: 16px;
+}
+
+.overview-card .mat-mdc-card-title {
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+/* Actions Grid */
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Smaller cards */
+  gap: 16px; /* Reduced gap */
+}
+
+.action-card {
+  background-color: #1a1a1a !important;
+  border: 1px solid #404040 !important;
+  border-radius: 8px !important; /* Reduced border radius */
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-card:hover {
+  border-color: #6264A7 !important;
+  transform: translateY(-1px); /* Reduced hover effect */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.action-card .mat-mdc-card-header {
+  padding: 16px 20px 8px 20px; /* Reduced padding */
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Reduced gap */
+}
+
+.action-icon {
+  width: 40px; /* Smaller icon container */
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.action-icon mat-icon {
+  font-size: 20px; /* Smaller icon */
+  width: 20px;
+  height: 20px;
+}
+
+.action-content {
+  flex: 1;
+}
+
+.action-card .mat-mdc-card-title {
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 1rem; /* Smaller title */
+  margin-bottom: 2px;
+}
+
+.action-card .mat-mdc-card-subtitle {
+  color: #b3b3b3 !important;
+  font-size: 0.8rem; /* Smaller subtitle */
+  line-height: 1.3;
+}
+
+.action-card .mat-mdc-card-content {
+  padding: 0 20px 16px 20px; /* Reduced padding */
+}
+
+.action-button {
+  background: none !important;
+  border: none !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+  text-transform: none !important;
+}
+
+.action-button:hover {
+  background-color: rgba(98, 100, 167, 0.1) !important;
+}
+
+.action-button mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+/* Footer */
+.footer-section {
+  text-align: center;
+  padding: 32px 0;
+  border-top: 1px solid #404040;
+  margin-top: 32px;
+}
+
+.footer-text {
+  color: #808080;
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .main-content {
+    margin-left: 60px;
+  }
+  
+  .navbar {
+    left: 60px;
+  }
+  
+  .home-container {
+    padding: 70px 20px 20px 20px;
+  }
+  
+  .welcome-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .welcome-content h1.welcome-title {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
+  
+  .navbar {
+    left: 0;
+  }
+  
+  .overview-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .actions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .home-container {
+    padding: 70px 12px 12px 12px;
+  }
+}
+
+/* Material Theme Overrides */
+.mat-mdc-card {
+  --mdc-elevated-card-container-color: #2d2d30;
+  --mdc-elevated-card-container-surface-tint-layer-color: transparent;
+}
+
+.mat-mdc-button {
+  --mdc-text-button-label-text-color: inherit;
+}

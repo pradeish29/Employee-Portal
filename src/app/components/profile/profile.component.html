@@ -1,0 +1,168 @@
+<!-- profile.component.html -->
+<div class="app-layout">
+  <!-- Sidebar -->
+  <app-sidebar class="sidebar"></app-sidebar>
+  
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <!-- Navbar -->
+    <app-navbar class="navbar"></app-navbar>
+    
+    <div class="profile-page">
+      <!-- Profile Header Section -->
+      <div class="profile-header-section">
+        <div class="profile-header-left">
+          <div class="profile-avatar">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+            <div class="status-indicator" [style.background-color]="getCurrentStatusOption()?.color"></div>
+          </div>
+          <div class="profile-info">
+            <h1 class="profile-name">{{ userProfile.name }}</h1>
+            <p class="profile-email">{{ userProfile.email }}</p>
+            <div class="profile-meta">
+              <div class="status-display">
+                <span class="profile-designation">{{ userProfile.title }}</span>
+              </div>
+              <span class="profile-divider">•</span>
+              <span class="profile-emp-id">ID: {{ userProfile.employeeId }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="profile-header-right">
+          <button class="sign-out-btn" (click)="signOut()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.59L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
+            </svg>
+            Sign Out
+          </button>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="profile-tabs">
+        <button 
+          class="tab-button" 
+          [class.active]="activeTab === 'overview'"
+          (click)="setActiveTab('overview')">
+          Overview
+        </button>
+        <button 
+          class="tab-button" 
+          [class.active]="activeTab === 'personal'"
+          (click)="setActiveTab('personal')">
+          Personal Details
+        </button>
+        <button 
+          class="tab-button" 
+          [class.active]="activeTab === 'organization'"
+          (click)="setActiveTab('organization')">
+          Organization Details
+        </button>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="tab-content">
+        <!-- Overview Tab -->
+        <div *ngIf="activeTab === 'overview'" class="overview-tab">
+          <div class="info-section">
+            <!-- <h3>Overview</h3> -->
+            <div class="info-grid">
+              <div class="info-item">
+                <div class="info-label">Email ID</div>
+                <div class="info-value">{{ userProfile.email }}</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Organization Name</div>
+                <div class="info-value">{{ userProfile.orgName }}</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Employee Type</div>
+                <div class="info-value">{{ userProfile.employeeType }}</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Location</div>
+                <div class="info-value">{{ userProfile.location }}</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Availability</div>
+                <div class="info-value availability-status">
+                  <div class="status-dot" [style.background-color]="getCurrentStatusOption()?.color"></div>
+                  <span>{{ getCurrentStatusOption()?.label }}</span>
+                </div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Timezone</div>
+                <div class="info-value">{{ userProfile.timezone }}</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Working Hours</div>
+                <div class="info-value">{{ userProfile.workingHours }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Personal Details Tab -->
+        <div *ngIf="activeTab === 'personal'" class="personal-tab">
+          <div class="info-section">
+            <!-- <h3>Personal Details</h3> -->
+            <div class="info-grid">
+              <div class="info-item">
+                <div class="info-label">Date of Birth</div>
+                <div class="info-value">{{ userProfile.dateOfBirth }}</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Gender</div>
+                <div class="info-value">{{ userProfile.gender }}</div>
+              </div>
+              <div class="info-item full-width">
+                <div class="info-label">Address</div>
+                <div class="info-value">{{ userProfile.address }}</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Nationality</div>
+                <div class="info-value">{{ userProfile.nationality }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Organization Details Tab -->
+        <div *ngIf="activeTab === 'organization'" class="organization-tab">
+          <div class="info-section">
+            <!-- <h3>Organization Details</h3> -->
+            <div class="info-grid">
+              <div class="info-item">
+                <div class="info-label">Organization Name</div>
+                <div class="info-value">{{ userProfile.orgName }}</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Company Code</div>
+                <div class="info-value">{{ userProfile.code }}</div>
+              </div>
+              <div class="info-item full-width">
+                <div class="info-label">Organization Address</div>
+                <div class="info-value">{{ userProfile.orgAddress }}</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Date of Joining</div>
+                <div class="info-value">{{ userProfile.dateOfJoining }}</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Job ID</div>
+                <div class="info-value">{{ userProfile.jobId }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+              </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-section">
+      <p class="footer-text">© Copyright 2025 Kaar Technologies. All rights reserved | Level 8, Shyamala Towers, Salligramam, Chennai - 93, India</p>
+    </div>
+  </div>

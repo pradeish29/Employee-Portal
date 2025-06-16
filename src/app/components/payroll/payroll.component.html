@@ -1,0 +1,262 @@
+<div class="app-layout">
+  <!-- Sidebar -->
+  <app-sidebar class="sidebar"></app-sidebar>
+  
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <!-- Navbar -->
+    <app-navbar class="navbar"></app-navbar>
+    
+    <!-- Payroll Content -->
+    <div class="payroll-content">
+      
+      <!-- Header Section -->
+      <div class="header-section">
+        <div class="header-content">
+          <div class="title-section">
+            <h1 class="section-title">Payroll Information</h1>
+            <p class="section-description">
+              View your salary details, pay structure, and compensation information. 
+              Your payroll data is updated monthly and reflects your current employment terms.
+            </p>
+          </div>
+          <div class="action-section">
+          <button class="download-btn" (click)="previewPayslip()">
+            <svg class="download-icon" xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            Preview Payslip
+          </button>
+          </div>
+          <div class="action-section">
+            <button class="download-btn" (click)="downloadPayslip()">
+              <svg class="download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7,10 12,15 17,10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Download Payslip
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payroll Dashboard Cards -->
+      <div class="payroll-grid">
+
+        <!-- Cost Center Card -->
+        <div class="payroll-card cost-center">
+          <div class="card-header">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 7H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-value">{{ payrollData.cost_center }}</div>
+              <div class="card-label">Cost Center</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bank Name Card -->
+        <div class="payroll-card cost-center">
+          <div class="card-header">
+            <div class="card-icon">
+              <!-- Bank Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 10l9-6 9 6" />
+                <path d="M4 10v10h16V10" />
+                <path d="M12 16v-6" />
+                <path d="M8 16v-4" />
+                <path d="M16 16v-4" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-value">{{ payrollData.Bank }}</div>
+              <div class="card-label">Bank</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bank Code Card -->
+        <div class="payroll-card cost-center">
+          <div class="card-header">
+            <div class="card-icon">
+              <!-- QR Code Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3h4v4H3zM17 3h4v4h-4zM3 17h4v4H3zM10 3h4M21 10h-4M10 21v-4h4v4" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-value">{{ payrollData.Bank_code }}</div>
+              <div class="card-label">Bank Code</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Acc Number Card -->
+        <div class="payroll-card cost-center">
+          <div class="card-header">
+            <div class="card-icon">
+              <!-- Credit Card Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="5" width="20" height="14" rx="2" ry="2" />
+                <line x1="2" y1="10" x2="22" y2="10" />
+                <line x1="6" y1="16" x2="6.01" y2="16" />
+                <line x1="10" y1="16" x2="14" y2="16" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-value">{{ payrollData.Acc_no }}</div>
+              <div class="card-label">Account Number</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pay Type Card -->
+        <div class="payroll-card pay-level">
+          <div class="card-header">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-value">{{ payrollData.pay_scale.type }}</div>
+              <div class="card-label">Pay Type</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pay Area Card -->
+        <div class="payroll-card pay-level">
+          <div class="card-header">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12,2 2,7 12,12 22,7 12,2"/>
+                <polyline points="2,17 12,22 22,17"/>
+                <polyline points="2,12 12,17 22,12"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-value">{{ payrollData.pay_scale.area }}</div>
+              <div class="card-label">Pay Area</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pay Group Card -->
+        <div class="payroll-card pay-level">
+          <div class="card-header">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-value">{{ payrollData.pay_scale.group }}</div>
+              <div class="card-label">Pay Group</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pay Level Card -->
+        <div class="payroll-card pay-level">
+          <div class="card-header">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-value">{{ payrollData.pay_scale.level }}</div>
+              <div class="card-label">Pay Level</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wage Type Card -->
+        <div class="payroll-card work-hours">
+          <div class="card-header">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-value">{{ payrollData.wage_type }}</div>
+              <div class="card-label">Wage Type</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Basic Salary Card -->
+        <div class="payroll-card work-hours">
+          <div class="card-header">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/>
+                <path d="M12 18V6"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-value">{{ formatCurrency(payrollData.basic_salary) }}</div>
+              <div class="card-label">Basic Salary (Monthly)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Annual Salary Card -->
+        <div class="payroll-card work-hours">
+          <div class="card-header">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-value">{{ formatCurrency(payrollData.annual_salary) }}</div>
+              <div class="card-label">Annual Salary</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Work Hours Card -->
+        <div class="payroll-card work-hours">
+          <div class="card-header">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12,6 12,12 16,14"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-value">{{ payrollData.work_hours }}h</div>
+              <div class="card-label">Work Hours (Monthly)</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+     <div class="footer-section">
+      <p class="footer-text">© Copyright 2025 Kaar Technologies. All rights reserved | Level 8, Shyamala Towers, Salligramam, Chennai - 93, India</p>
+    </div>
+  </div>
+</div>
