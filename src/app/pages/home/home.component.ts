@@ -59,21 +59,21 @@ export class HomeComponent implements OnInit, OnDestroy { // Implement OnInit an
       title: 'Team Directory',
       description: 'Find and connect with colleagues across your organization',
       icon: 'groups',
-      route: '/directory',
+      route: '/home',
       color: '#8661C5'
     },
     {
       title: 'Time Tracking',
       description: 'Log work hours, track projects, and manage your time efficiently',
       icon: 'schedule',
-      route: '/timesheet',
+      route: '/home',
       color: '#D83B01'
     },
     {
       title: 'Documents',
       description: 'Access company policies, forms, and important documentation',
       icon: 'folder',
-      route: '/documents',
+      route: '/home',
       color: '#038387'
     }
   ];

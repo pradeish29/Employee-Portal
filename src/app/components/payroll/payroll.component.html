@@ -20,26 +20,96 @@
               Your payroll data is updated monthly and reflects your current employment terms.
             </p>
           </div>
+          
+          <!-- Date Selection and Actions -->
           <div class="action-section">
-          <button class="download-btn" (click)="previewPayslip()">
-            <svg class="download-icon" xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" 
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-              <circle cx="12" cy="12" r="3"></circle>
-            </svg>
-            Preview Payslip
-          </button>
+            <div class="date-selector">
+              <div class="dropdown-group">
+                <label class="dropdown-label">Month</label>
+                <select [(ngModel)]="selectedMonth" class="dropdown-select">
+                  <option *ngFor="let month of months" [value]="month.value">
+                    {{ month.label }}
+                  </option>
+                </select>
+              </div>
+              
+              <div class="dropdown-group">
+                <label class="dropdown-label">Year</label>
+                <select [(ngModel)]="selectedYear" class="dropdown-select">
+                  <option *ngFor="let year of years" [value]="year">
+                    {{ year }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="button-group">
+              <button class="download-btn preview-btn" (click)="previewPayslip()" [disabled]="loading">
+                <svg class="download-icon" xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                {{ loading ? 'Loading...' : 'Preview Payslip' }}
+              </button>
+              
+              <button class="download-btn download-main" (click)="downloadPayslip()" [disabled]="loading">
+                <svg class="download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7,10 12,15 17,10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Download Payslip
+              </button>
+              
+              <button class="download-btn email-btn" (click)="emailPayslip()" [disabled]="!showPdfPreview">
+                <svg class="download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                Email Payslip
+              </button>
+            </div>
           </div>
-          <div class="action-section">
-            <button class="download-btn" (click)="downloadPayslip()">
-              <svg class="download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <polyline points="7,10 12,15 17,10"/>
-                <line x1="12" y1="15" x2="12" y2="3"/>
-              </svg>
-              Download Payslip
-            </button>
+        </div>
+      </div>
+
+      <!-- Error Message -->
+      <div *ngIf="error" class="error-message">
+        <svg class="error-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="15" y1="9" x2="9" y2="15"/>
+          <line x1="9" y1="9" x2="15" y2="15"/>
+        </svg>
+        {{ error }}
+      </div>
+
+      <!-- PDF Preview Modal -->
+      <div *ngIf="showPdfPreview" class="pdf-preview-modal">
+        <div class="modal-backdrop" (click)="closePdfPreview()"></div>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Payslip Preview - {{ getSelectedMonthLabel() }} {{ selectedYear }}</h3>
+            <div class="modal-actions">
+              <button class="modal-btn email-modal-btn" (click)="emailPayslip()">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                Email
+              </button>
+              <button class="modal-btn close-btn" (click)="closePdfPreview()">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+                Close
+              </button>
+            </div>
+          </div>
+          <div class="pdf-viewer">
+            <iframe *ngIf="pdfPreviewUrl" [src]="pdfPreviewUrl" class="pdf-frame"></iframe>
           </div>
         </div>
       </div>

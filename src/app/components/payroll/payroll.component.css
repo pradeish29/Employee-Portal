@@ -110,6 +110,292 @@
   height: 18px;
 }
 
+/* Date Selector Styles */
+.date-selector {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.dropdown-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dropdown-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #b3b3b3;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dropdown-select {
+  background: #1a1a1a;
+  border: 1px solid #333333;
+  border-radius: 6px;
+  color: #ffffff;
+  padding: 8px 12px;
+  font-size: 14px;
+  min-width: 120px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dropdown-select:hover {
+  border-color: #6264A7;
+}
+
+.dropdown-select:focus {
+  outline: none;
+  border-color: #6264A7;
+  box-shadow: 0 0 0 2px rgba(98, 100, 167, 0.2);
+}
+
+.dropdown-select option {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+/* Button Group Styles */
+.button-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.download-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 140px;
+  justify-content: center;
+}
+
+.download-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Preview Button Styles */
+.preview-btn {
+  background: #6264A7;
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(98, 100, 167, 0.2);
+}
+
+.preview-btn:hover:not(:disabled) {
+  background: #7b7db8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(98, 100, 167, 0.3);
+}
+
+.preview-btn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(98, 100, 167, 0.2);
+}
+
+/* Download Button Styles */
+.download-main {
+  background: #28a745;
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
+}
+
+.download-main:hover:not(:disabled) {
+  background: #34ce57;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.download-main:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
+}
+
+/* Email Button Styles */
+.email-btn {
+  background: #dc3545;
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);
+}
+
+.email-btn:hover:not(:disabled) {
+  background: #e85663;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+.email-btn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);
+}
+
+/* Button Icons */
+.download-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Error Message Styles */
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.3);
+  border-radius: 6px;
+  padding: 12px 16px;
+  color: #ff6b7a;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.error-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* PDF Preview Embedded Styles */
+.pdf-preview-modal {
+  margin-top: 24px;
+  background: #1a1a1a;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.modal-backdrop {
+  display: none;
+}
+
+.modal-content {
+  position: relative;
+  background: #1a1a1a;
+  width: 100%;
+  height: 100vh;
+  max-height: 800px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #333333;
+  background: #262626;
+}
+
+.modal-title {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.email-modal-btn {
+  background: #dc3545;
+  color: #ffffff;
+}
+
+.email-modal-btn:hover {
+  background: #e85663;
+}
+
+.close-btn {
+  background: #666666;
+  color: #ffffff;
+}
+
+.close-btn:hover {
+  background: #777777;
+}
+
+.btn-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.pdf-viewer {
+  flex: 1;
+  padding: 0;
+  background: #ffffff;
+}
+
+.pdf-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .date-selector {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .download-btn {
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .modal-content {
+    width: 95vw;
+    height: 90vh;
+  }
+  
+  .modal-header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .modal-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
 /* Payroll Grid */
 .payroll-grid {
   display: grid;
